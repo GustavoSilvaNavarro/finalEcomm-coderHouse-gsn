@@ -1,0 +1,12 @@
+/package-lock.json
+coverage
+
+# Dependency directories
+/node_modules
+
+# Custom folders
+/dist
+/.vscode
+
+# Enviromental Variables
+/.env
