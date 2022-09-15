@@ -7,6 +7,7 @@ import MongoStore from 'connect-mongo';
 import morgan from 'morgan';
 
 import authUserRoutes from '../routes/users/auth-routes.js';
+import clientServices from '../routes/services-routes/services-api-routes.js';
 import env from '../utils/env/env-variables.js';
 import { notFoundPage, errorHandler } from '../middleware/errors/error-handler.js';
 import { passportSetupInitialize } from '../config/auth/passport.js';
@@ -42,6 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', authUserRoutes);
+app.use('/api', clientServices);
 
 app.use('*', notFoundPage);
 
