@@ -8,6 +8,7 @@ import morgan from 'morgan';
 
 import authUserRoutes from '../routes/users/auth-routes.js';
 import env from '../utils/env/env-variables.js';
+import { notFoundPage, errorHandler } from '../middleware/errors/error-handler.js';
 import { passportSetupInitialize } from '../config/auth/passport.js';
 
 const app = express();
@@ -41,5 +42,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', authUserRoutes);
+
+app.use('*', notFoundPage);
+
+app.use(errorHandler);
 
 export default { app };
