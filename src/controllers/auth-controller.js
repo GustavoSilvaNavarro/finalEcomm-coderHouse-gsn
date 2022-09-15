@@ -15,10 +15,14 @@ export const createNewUser = (req, res, next) => {
 };
 
 //! POST - Login and authenticate the user
-export const loginUser = (_req, res, next) => {
+export const loginUserProcess = (req, res, next) => {
+  logger.info(`${req.method} request to ${req.url} route: Login process, authenticating user`);
   try {
-    res.status(200).redirect('/');
+    console.log(req.session);
+    res.status(200).send('User was logged in');
+    // res.status(200).redirect('/');
   } catch (err) {
+    logger.error(err.message);
     next(err);
   }
 };

@@ -34,6 +34,34 @@ export const passportSetupInitialize = passport => {
   );
 
   //! Login Logic with Passport
+  passport.use(
+    'login',
+    new LocalStrategy(
+      {
+        usernameField: 'emailUser',
+        passwordField: 'passwordUser',
+      },
+      async (emailUser, passwordUser, done) => {
+        try {
+          const user = await UserModel.findOne({ email: emailUser });
+
+          if (!user) {
+            return done(null, false, { message: 'Invalid Credentials!' });
+          } else {
+            const passwordMatches = await user.comparePassword(passwordUser);
+
+            if (passwordMatches) {
+              return done(null, user);
+            } else {
+              return done(null, false, { message: 'Invalid Credentials!' });
+            }
+          }
+        } catch (err) {
+          return done(err);
+        }
+      }
+    )
+  );
 
   passport.serializeUser((user, done) => {
     done(null, user.id);

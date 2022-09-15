@@ -48,3 +48,18 @@ export const authUserSchema = object({
     path: ['passwordConfirmation'],
   }),
 });
+
+export const loginUserSchema = object({
+  body: object({
+    emailUser: string({
+      required_error: 'Email is required',
+    })
+      .email({ message: 'Email must be a valid email' })
+      .trim(),
+    passwordUser: string({
+      required_error: 'Password is required',
+    })
+      .min(6, { message: 'Password must be 6 or more characters long' })
+      .trim(),
+  }),
+});
