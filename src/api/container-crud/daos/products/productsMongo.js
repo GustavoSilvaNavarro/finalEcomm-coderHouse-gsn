@@ -1,3 +1,4 @@
+'use strict';
 import CrudContainerMongo from '../../mDBContainer.js';
 import env from '../../../../utils/env/env-variables.js';
 import { AppErrors } from '../../../../utils/errors/error-app.js';
@@ -39,6 +40,16 @@ class ProductsMongo extends CrudContainerMongo {
     }
 
     const err = new AppErrors('Collection type must be an string', 502);
+    throw err;
+  }
+
+  //! Delete an existing product by ID
+  async deleteSingleProduct(id) {
+    if (env.productType !== undefined) {
+      return await this.deleteData(id, env.productType);
+    }
+
+    const err = new AppErrors('Collection type must be an string', 400);
     throw err;
   }
 }

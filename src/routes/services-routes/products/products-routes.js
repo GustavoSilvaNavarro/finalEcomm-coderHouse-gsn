@@ -1,3 +1,4 @@
+'use strict';
 import { Router } from 'express';
 
 import privateAdminRoutes from './admin/private-products-routes.js';
