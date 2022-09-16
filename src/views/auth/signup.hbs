@@ -1,0 +1,49 @@
+<section>
+  <div class="row justify-content-center my-5">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="display-5 text-center mb-3">Sign up</h2>
+          <form action="/signup" method="post">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="firstName" id="first_name_input" placeholder="First Name" required />
+              <label for="first_name_input">First Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="lastName" id="last_name_input" placeholder="Last Name" required />
+              <label for="last_name_input">Last Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" name="email" id="email_input" placeholder="Email" required />
+              <label for="email_input">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" name="password" id="password_input" placeholder="Password" required />
+              <label for="password_input">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" name="passwordConfirmation" id="password_confirmation_input" placeholder="Confirm Password" required />
+              <label for="password_confirmation_input">Confirm Password</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="address" id="address_input" placeholder="Address" required />
+              <label for="address_input">Address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" name="age" id="age_input" placeholder="Age" min="12" required />
+              <label for="age_input">Age</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="cellphone" id="cellphone_input" placeholder="Cellphone" required />
+              <label for="cellphone_input">Cellphone</label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg">Send</button>
+            </div>
+          </form>
+          <a href="/login" class="mt-2 text-decoration-none fs-4 d-flex justify-content-end">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

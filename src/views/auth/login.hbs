@@ -1,0 +1,25 @@
+<section>
+  <div class="row justify-content-center my-5">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="display-5 text-center mb-3">Sign in</h2>
+          <form action="/login" method="post">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" name="emailUser" id="email_user_input" placeholder="Email" required />
+              <label for="email_user_input">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" name="passwordUser" id="password_user_input" placeholder="Password" required />
+              <label for="password_user_input">Password</label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg">Send</button>
+            </div>
+          </form>
+          <a href="/signup" class="mt-2 text-decoration-none fs-4 d-flex justify-content-end">Sign up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

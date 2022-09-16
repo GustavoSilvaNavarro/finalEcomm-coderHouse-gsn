@@ -18,6 +18,11 @@ export const productSchema = object({
     })
       .min(1, { message: 'Must be at least 1 or more characters long' })
       .trim(),
+    categoryProduct: string({
+      required_error: 'Category product is required',
+    })
+      .min(1, { message: 'Must be at least 1 or more characters long' })
+      .trim(),
     url: string({
       required_error: 'URL picture photo is required',
     })

@@ -3,7 +3,7 @@ import { AppErrors } from '../../utils/errors/error-app.js';
 import logger from '../../config/logs/loggers.js';
 
 export const notFoundPage = (req, _res, next) => {
-  logger.error(`${req.originalUrl} route does not exist`);
+  logger.warn(`${req.originalUrl} route does not exist`);
   const err = new AppErrors('Page not Found!', 404);
   next(err);
 };

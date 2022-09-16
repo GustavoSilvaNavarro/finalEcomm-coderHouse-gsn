@@ -2,11 +2,19 @@
 import { Router } from 'express';
 import passport from 'passport';
 
-import { createNewUser, loginUserProcess } from '../../controllers/auth-controller.js';
+import {
+  createNewUser,
+  loginUserProcess,
+  renderSignupPage,
+  renderLoginPage,
+} from '../../controllers/auth-controller.js';
 import { validateResources } from '../../middleware/validations/validate-resources.js';
 import { authUserSchema, loginUserSchema } from '../../helpers/schemas/user-schemas.js';
 
 const router = Router();
+
+//! GET - Registration page
+router.get('/signup', renderSignupPage);
 
 //! POST - Register new user
 router.post(
@@ -17,6 +25,9 @@ router.post(
   }),
   createNewUser
 );
+
+//! GET - Login page
+router.get('/login', renderLoginPage);
 
 //! POST - Login and authenticate the user
 router.post(
