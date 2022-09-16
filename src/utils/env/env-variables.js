@@ -2,8 +2,8 @@
 
 export default {
   dbName: process.env.MDB_DATABASE_CONNECTION,
-  productTipo: process.env.DB_TIPO_PRODUCT_COLLECTION,
-  cartTipo: process.env.DB_TIPO_CART_COLLECTION,
+  productType: process.env.DB_TIPO_PRODUCT_COLLECTION,
+  cartType: process.env.DB_TIPO_CART_COLLECTION,
   smtp: {
     user: String(process.env.MAIL_USER_SMTP),
     pass: String(process.env.MAIL_PASS_SMTP),
