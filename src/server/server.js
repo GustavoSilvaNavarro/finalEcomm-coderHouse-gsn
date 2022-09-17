@@ -1,5 +1,6 @@
 'use strict';
 import express from 'express';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import passport from 'passport';
@@ -59,6 +60,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
 
 app.use('/', mainRoutes);
 app.use('/', authUserRoutes);
