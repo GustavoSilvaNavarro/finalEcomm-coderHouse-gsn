@@ -13,6 +13,10 @@ const UserSchema = new Schema(
     password: { type: String, required: true, trim: true },
     address: { type: String, required: true, trim: true },
     cellphone: { type: String, required: true, trim: true },
+    userImage: {
+      profilePicUrl: { type: String },
+      public_id: { type: String },
+    },
   },
   {
     timestamps: true,

@@ -1,5 +1,5 @@
 'use strict';
-import { object, string, number } from 'zod';
+import { object, string } from 'zod';
 
 export const authUserSchema = object({
   body: object({
@@ -26,12 +26,19 @@ export const authUserSchema = object({
     })
       .email({ message: 'Email must be a valid email' })
       .trim(),
-    age: number({
+    age: string({
       required_error: 'Age is required',
-      invalid_type_error: 'Age must be a number',
     })
-      .gte(12, { message: 'You must be older than 12 years' })
-      .int({ message: 'Age must be an integer' }),
+      .min(1, { message: 'Age must be at least 1 or more characters long' })
+      .refine(val => !isNaN(Number(val)), {
+        message: 'Age must be a number',
+      })
+      .refine(val => Number.isInteger(Number(val)), {
+        message: 'Age must be an integer',
+      })
+      .refine(val => Number(val) >= 12, {
+        message: 'Age must be greater than 12 years',
+      }),
     address: string({
       required_error: 'Address is required',
     })

@@ -1,7 +1,9 @@
 'use strict';
 import localPassport from 'passport-local';
+import fs from 'fs-extra';
 
 import UserModel from '../../models/user-models.js';
+import { uploadImage } from '../../utils/upload-images/cloudinary.js';
 
 const LocalStrategy = localPassport.Strategy;
 
@@ -24,6 +26,18 @@ export const passportSetupInitialize = passport => {
           }
 
           const newUser = new UserModel(req.body);
+
+          if (req.file) {
+            const result = await uploadImage(req.file.path, 'users');
+
+            newUser.userImage = {
+              profilePicUrl: result.secure_url,
+              public_id: result.public_id,
+            };
+
+            await fs.unlink(req.file.path);
+          }
+
           await newUser.save();
           return done(null, newUser);
         } catch (err) {

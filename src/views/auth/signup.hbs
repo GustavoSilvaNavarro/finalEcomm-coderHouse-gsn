@@ -1,10 +1,10 @@
 <section>
   <div class="row justify-content-center my-5">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="card">
         <div class="card-body">
           <h2 class="display-5 text-center mb-3">Sign up</h2>
-          <form action="/signup" method="post">
+          <form action="/signup" method="post" enctype="multipart/form-data">
             <div class="form-floating mb-3">
               <input type="text" class="form-control" name="firstName" id="first_name_input" placeholder="First Name" required />
               <label for="first_name_input">First Name</label>
@@ -12,6 +12,9 @@
             <div class="form-floating mb-3">
               <input type="text" class="form-control" name="lastName" id="last_name_input" placeholder="Last Name" required />
               <label for="last_name_input">Last Name</label>
+            </div>
+            <div class="input-group mb-3">
+                <input type="file" name="userProfilePicture" id="user_image_input" class="form-control" />
             </div>
             <div class="form-floating mb-3">
               <input type="email" class="form-control" name="email" id="email_input" placeholder="Email" required />

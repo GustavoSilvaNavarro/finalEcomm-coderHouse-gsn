@@ -1,5 +1,4 @@
 'use strict';
-
 import { createLogger, format, transports } from 'winston';
 import 'winston-mongodb';
 

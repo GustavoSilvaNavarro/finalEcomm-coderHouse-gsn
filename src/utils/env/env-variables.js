@@ -12,4 +12,7 @@ export default {
     secure: false,
   },
   secretKeySession: process.env.SECRET_KEY_SESSION,
+  cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  cloudPublicKey: process.env.CLOUDINARY_PUBLIC_KEY,
+  cloudSecretKey: process.env.CLOUDINARY_SECRET_KEY,
 };
