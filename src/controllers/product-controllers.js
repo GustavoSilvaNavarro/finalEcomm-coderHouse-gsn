@@ -7,7 +7,7 @@ export const getAllProductsData = async (req, res, next) => {
   logger.info(`${req.method} request to ${req.originalUrl} route: Getting all products from DB`);
   try {
     const allProducts = await ProductMDB.getAllProducts();
-    res.status(200).json(allProducts);
+    res.status(200).render('products/allProducts', { allProducts });
   } catch (err) {
     logger.error(err.message);
     next(err);

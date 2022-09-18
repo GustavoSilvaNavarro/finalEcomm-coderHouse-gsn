@@ -1,0 +1,32 @@
+<section class="row mt-5">
+  {{#if allProducts}}
+    {{#each allProducts}}
+      <div class="col-md-3">
+        <div class="card">
+          <img src={{ url }} alt={{ productName }} class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ productName }}</h5>
+            <p class="card-text">{{ productDescription }}</p>
+            <form>
+              <div class="d-flex justify-content-center">
+                <input type="number" class="form-control form-control-sm w-50 text-center" name="productAmount" id="product_amount" value="1" placeholder="Add amount" min="1" required />
+              </div>
+              <div class="d-grid mt-3">
+                <a href="#" class="btn btn-primary">Add Cart</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="display-5 text-center">Empty List</h2>
+          <p class="lead text-center">There is no Products to show</p>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</section>

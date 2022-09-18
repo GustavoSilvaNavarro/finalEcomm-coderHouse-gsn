@@ -37,7 +37,7 @@ class CrudContainerMongo {
           throw err;
         }
       } else {
-        anyDataRead = await ProductModel.find({});
+        anyDataRead = await ProductModel.find({}).lean();
       }
 
       if (anyDataRead !== null) {

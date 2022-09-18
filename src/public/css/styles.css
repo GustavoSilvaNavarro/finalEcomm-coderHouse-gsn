@@ -1,0 +1,9 @@
+.profile_picture {
+  height: 100px;
+  width: 100px;
+  border-radius: 75%;
+  -webkit-border-radius: 75%;
+  -moz-border-radius: 75%;
+  -ms-border-radius: 75%;
+  -o-border-radius: 75%;
+}

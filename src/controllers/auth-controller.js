@@ -16,8 +16,7 @@ export const renderSignupPage = (req, res, next) => {
 export const createNewUser = (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Register process, creating new user`);
   try {
-    console.log(req.session);
-    res.status(302).redirect('/products');
+    res.status(302).redirect('/');
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);
@@ -39,8 +38,7 @@ export const renderLoginPage = (req, res, next) => {
 export const loginUserProcess = (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Login process, authenticating user`);
   try {
-    console.log(req.session);
-    res.status(302).redirect('/products');
+    res.status(302).redirect('/');
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);

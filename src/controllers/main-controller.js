@@ -5,7 +5,7 @@ import logger from '../config/logs/loggers.js';
 export const mainRoute = (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Redirecting to '/products'`);
   try {
-    res.status(302).redirect('/products');
+    res.status(302).render('dashboard');
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);
