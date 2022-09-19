@@ -1,5 +1,5 @@
 'use strict';
-import { object, string, number } from 'zod';
+import { object, string } from 'zod';
 
 export const productSchema = object({
   body: object({
@@ -23,19 +23,34 @@ export const productSchema = object({
     })
       .min(1, { message: 'Must be at least 1 or more characters long' })
       .trim(),
-    url: string({
-      required_error: 'URL picture photo is required',
-    })
-      .url({ message: 'URL must be valid' })
-      .min(6, { message: 'Must be at least 6 or more characters long' })
-      .trim(),
-    productPrice: number({
+    // url: string({
+    //   required_error: 'URL picture photo is required',
+    // })
+    //   .url({ message: 'URL must be valid' })
+    //   .min(6, { message: 'Must be at least 6 or more characters long' })
+    //   .trim(),
+    productPrice: string({
       required_error: 'Price is required',
-    }).nonnegative(0, { message: 'Price can not be 0 or lower' }),
-    stock: number({
+    })
+      .min(1, { message: 'Price must be at least 1 or more characters long' })
+      .refine(val => !isNaN(Number(val)), {
+        message: 'Price must be a number',
+      })
+      .refine(val => Number(val) > 0, {
+        message: 'Price can not be 0 or lower',
+      }),
+    stock: string({
       required_error: 'Stock is required',
     })
-      .nonnegative(0, { message: 'Stock can not be 0 or lower' })
-      .int({ message: 'Stock only accepts integers ' }),
+      .min(1, { message: 'Stock must be at least 1 or more characters long' })
+      .refine(val => !isNaN(Number(val)), {
+        message: 'Stock must be a number',
+      })
+      .refine(val => Number.isInteger(Number(val)), {
+        message: 'Stock must be an integer',
+      })
+      .refine(val => Number(val) > 0, {
+        message: 'Price can not be 0 or lower',
+      }),
   }),
 });

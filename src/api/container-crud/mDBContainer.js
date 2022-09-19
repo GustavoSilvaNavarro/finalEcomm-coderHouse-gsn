@@ -1,18 +1,30 @@
 'use strict';
 import { isValidObjectId } from 'mongoose';
+import fs from 'fs-extra';
 
 import ProductModel from '../../models/product-models.js';
 import CartModel from '../../models/cart-models.js';
+import { uploadImage } from '../../utils/upload-images/cloudinary.js';
 import { AppErrors } from '../../utils/errors/error-app.js';
 
 //! BASIC CRUD
 class CrudContainerMongo {
   //! Create new data
-  async createNewData(collectionType, data) {
+  async createNewData(collectionType, data, picture) {
     let newData;
 
     if (collectionType === 'product') {
       newData = new ProductModel(data);
+      if (picture) {
+        const result = await uploadImage(picture.path, 'products');
+
+        newData.productPicture = {
+          productPicUrl: result.secure_url,
+          public_id: result.public_id,
+        };
+
+        await fs.unlink(picture.path);
+      }
     } else if (collectionType === 'cart') {
       newData = new CartModel();
     } else {

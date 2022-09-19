@@ -64,7 +64,7 @@ app.use(cors());
 
 app.use('/', mainRoutes);
 app.use('/', authUserRoutes);
-app.use('/api', clientServices);
+app.use('/', clientServices);
 
 app.use('*', notFoundPage);
 
