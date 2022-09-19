@@ -1,0 +1,44 @@
+<div class="my-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="display-5 text-center textColor">Add New Product</h2>
+          <form action="/api/products/{{productDetail._id}}?_method=PUT" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="productName" id="product_name_input" placeholder="Product's Name" value="{{ productDetail.productName }}" required />
+              <label for="product_name_input">Product's Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <textarea type="text" class="form-control" name="productDescription" id="product_description_input" placeholder="Product's Description" required>{{ productDetail.productDescription }}</textarea>
+              <label for="product_description_input">Product's Description</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="productCode" id="product_code_input" placeholder="Product's Code" value="{{ productDetail.productCode }}" required />
+              <label for="product_code_input">Product's Code</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="categoryProduct" id="product_category_input" placeholder="Product's Category" value="{{ productDetail.categoryProduct }}" required />
+              <label for="product_category_input">Product's Category</label>
+            </div>
+            <div class="input-group mb-3">
+              <input type="file" name="productPicture" id="product_image_input" class="form-control" />
+            </div>
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" name="productPrice" id="product_price_input" placeholder="Price" step="0.01" min="0" value="{{ productDetail.productPrice }}" required />
+              <label for="product_price_input">Product's Price</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" name="stock" id="product_stock_input" placeholder="Stock" min="0" value="{{ productDetail.stock }}" required />
+              <label for="product_stock_input">Stock</label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg" type="submit">Add Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

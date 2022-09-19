@@ -83,13 +83,31 @@ class CrudContainerMongo {
   }
 
   //! Update data
-  async updateData(id, data, collectionType) {
+  async updateData(id, data, collectionType, picture) {
     if (id !== undefined) {
       if (isValidObjectId(id)) {
         if (collectionType === 'product') {
           const product = await ProductModel.findById(id);
 
           if (product !== null) {
+            if (picture) {
+              if (product.productPicture.public_id !== undefined) {
+                await deleteImage(product.productPicture.public_id);
+              }
+
+              const result = await uploadImage(picture.path, 'products');
+
+              data = {
+                ...data,
+                productPicture: {
+                  productPicUrl: result.secure_url,
+                  public_id: result.public_id,
+                },
+              };
+
+              await fs.unlink(picture.path);
+            }
+
             Object.assign(product, data);
             await product.save();
 

@@ -29,10 +29,10 @@ class ProductsMongo extends CrudContainerMongo {
   }
 
   //! Update an already existing product by ID
-  async updateProduct(id, data) {
+  async updateProduct(id, data, picture) {
     if (env.productType !== undefined) {
       if (Object.entries(data).length > 0) {
-        return await this.updateData(id, data, env.productType);
+        return await this.updateData(id, data, env.productType, picture);
       } else {
         const err = new AppErrors('You need to provide product data to updated the collection', 502);
         throw err;

@@ -10,7 +10,8 @@
       <p class="fs-2 text-secondary">{{ singleProduct.productDescription }}</p>
       <p class="fs-4"><span class="fw-bold">Price: </span>{{ singleProduct.productPrice }} USD</p>
       <p class="fs-4"><span class="fw-bold">Stock Available: </span>{{ singleProduct.stock }} Units</p>
-      <div class="d-flex justify-content-center mt-3">
+      <div class="d-flex justify-content-around mt-3">
+        <a href="/api/products/{{singleProduct._id}}" class="btn btn-primary btn-lg">Edit Product</a>
         <form action="/api/products/{{singleProduct._id}}?_method=DELETE" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <button class="btn btn-danger btn-lg">Delete Product</button>

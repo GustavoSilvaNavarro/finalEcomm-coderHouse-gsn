@@ -49,12 +49,27 @@ export const getOneProductData = async (req, res, next) => {
   }
 };
 
+//! Get Form page to update product by ID
+export const getDataFromDBToUpdate = async (req, res, next) => {
+  logger.info(`${req.method} request to '${req.originalUrl}' route: Render form page to update`);
+  try {
+    const productDetail = await ProductMDB.getAllProducts(req.params.id);
+    console.log(productDetail);
+    res.status(200).render('products/edit-product', { productDetail });
+  } catch (err) {
+    logger.error(err.message || err.toString());
+    next(err);
+  }
+};
+
 //! PUT Update product by id
 export const updateDataProduct = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Updating one product by its ID`);
   try {
-    const response = await ProductMDB.updateProduct(req.params.id, req.body);
-    res.status(200).send(response);
+    // const response = await ProductMDB.updateProduct(req.params.id, req.body, req.file); //TODO: find a way to send the message to client
+    await ProductMDB.updateProduct(req.params.id, req.body, req.file);
+    // res.status(200).send(response);
+    res.status(200).redirect(`/products/${req.params.id}`);
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);
