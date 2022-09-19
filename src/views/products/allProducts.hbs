@@ -2,21 +2,23 @@
   {{#if allProducts}}
     {{#each allProducts}}
       <div class="col-md-3">
-        <div class="card">
-          <img src={{ productPicture.productPicUrl }} alt={{ productName }} class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title text-center">{{ productName }}</h5>
-            <p class="card-text">{{ productDescription }}</p>
-            <form>
-              <div class="d-flex justify-content-center">
-                <input type="number" class="form-control form-control-sm w-50 text-center" name="productAmount" id="product_amount" value="1" placeholder="Add amount" min="1" required />
-              </div>
-              <div class="d-grid mt-3">
-                <a href="#" class="btn btn-primary">Add Cart</a>
-              </div>
-            </form>
+        <a href="/products/{{_id}}" class="text-decoration-none text-reset">
+          <div class="card">
+            <img src={{ productPicture.productPicUrl }} alt={{ productName }} class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title text-center">{{ productName }}</h5>
+              <p class="card-text">{{ productDescription }}</p>
+              <form>
+                <div class="d-flex justify-content-center">
+                  <input type="number" class="form-control form-control-sm w-50 text-center" name="productAmount" id="product_amount" value="1" placeholder="Add amount" min="1" required />
+                </div>
+                <div class="d-grid mt-3">
+                  <a href="#" class="btn btn-primary">Add Cart</a>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     {{/each}}
   {{else}}

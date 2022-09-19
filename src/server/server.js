@@ -1,5 +1,6 @@
 'use strict';
 import express from 'express';
+import methodOverride from 'method-override';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(

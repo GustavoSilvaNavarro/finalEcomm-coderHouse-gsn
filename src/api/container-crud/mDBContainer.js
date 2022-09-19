@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 
 import ProductModel from '../../models/product-models.js';
 import CartModel from '../../models/cart-models.js';
-import { uploadImage } from '../../utils/upload-images/cloudinary.js';
+import { uploadImage, deleteImage } from '../../utils/upload-images/cloudinary.js';
 import { AppErrors } from '../../utils/errors/error-app.js';
 
 //! BASIC CRUD
@@ -43,7 +43,7 @@ class CrudContainerMongo {
     if (collectionType === 'product') {
       if (id !== undefined) {
         if (isValidObjectId(id)) {
-          anyDataRead = await ProductModel.findById(id);
+          anyDataRead = await ProductModel.findById(id).lean();
         } else {
           const err = new AppErrors('Please enter a valid ID for Product', 502);
           throw err;
@@ -132,6 +132,9 @@ class CrudContainerMongo {
           const productDeleted = await ProductModel.findByIdAndDelete(id);
 
           if (productDeleted !== null) {
+            if (productDeleted.productPicture.public_id !== undefined) {
+              await deleteImage(productDeleted.productPicture.public_id);
+            }
             return `Product with ID: ${id} was deleted!`;
           }
 

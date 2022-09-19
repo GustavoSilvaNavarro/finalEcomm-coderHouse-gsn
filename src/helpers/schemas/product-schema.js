@@ -23,12 +23,6 @@ export const productSchema = object({
     })
       .min(1, { message: 'Must be at least 1 or more characters long' })
       .trim(),
-    // url: string({
-    //   required_error: 'URL picture photo is required',
-    // })
-    //   .url({ message: 'URL must be valid' })
-    //   .min(6, { message: 'Must be at least 6 or more characters long' })
-    //   .trim(),
     productPrice: string({
       required_error: 'Price is required',
     })

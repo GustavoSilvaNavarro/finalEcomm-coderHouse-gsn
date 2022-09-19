@@ -7,3 +7,11 @@
   -ms-border-radius: 75%;
   -o-border-radius: 75%;
 }
+
+.single_product_details {
+  height: 100vh;
+}
+
+.product_picture {
+  width: 100%;
+}

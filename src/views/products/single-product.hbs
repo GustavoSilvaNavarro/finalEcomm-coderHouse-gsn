@@ -1,0 +1,21 @@
+<div class="py-3">
+  <div class="row single_product_details">
+    <div class="col-md-5 d-flex align-items-center justify-content-center">
+      <div class="d-flex justify-content-center w-100">
+        <img class="product_picture" src={{ singleProduct.productPicture.productPicUrl }} alt={{ singleProduct.productName }}>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <h1 class="text-center display-2">{{ singleProduct.productName }}</h1>
+      <p class="fs-2 text-secondary">{{ singleProduct.productDescription }}</p>
+      <p class="fs-4"><span class="fw-bold">Price: </span>{{ singleProduct.productPrice }} USD</p>
+      <p class="fs-4"><span class="fw-bold">Stock Available: </span>{{ singleProduct.stock }} Units</p>
+      <div class="d-flex justify-content-center mt-3">
+        <form action="/api/products/{{singleProduct._id}}?_method=DELETE" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="btn btn-danger btn-lg">Delete Product</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

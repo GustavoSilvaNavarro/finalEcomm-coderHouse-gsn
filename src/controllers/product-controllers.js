@@ -30,7 +30,7 @@ export const addNewDataProduct = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Adding new product to DB`);
   try {
     const idProduct = await ProductMDB.addProduct(req.body, req.file);
-    res.status(200).json({ id: idProduct });
+    res.status(200).redirect(`/products/${idProduct}`);
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);
@@ -42,7 +42,7 @@ export const getOneProductData = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Getting all products from DB`);
   try {
     const singleProduct = await ProductMDB.getAllProducts(req.params.id);
-    res.status(200).json(singleProduct);
+    res.status(200).render('products/single-product', { singleProduct });
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);
@@ -65,8 +65,9 @@ export const updateDataProduct = async (req, res, next) => {
 export const deleteProduct = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Deleting one product by its ID`);
   try {
-    const result = await ProductMDB.deleteSingleProduct(req.params.id);
-    res.status(200).send(result);
+    // const result = await ProductMDB.deleteSingleProduct(req.params.id); //TODO: find a way to send the message to client
+    await ProductMDB.deleteSingleProduct(req.params.id);
+    res.status(200).redirect('/products');
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);
