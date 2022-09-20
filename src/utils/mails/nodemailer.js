@@ -1,3 +1,4 @@
+'use strict';
 import nodemailer from 'nodemailer';
 
 import logger from '../../config/logs/loggers.js';

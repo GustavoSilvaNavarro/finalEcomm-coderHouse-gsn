@@ -26,7 +26,7 @@ class CrudContainerMongo {
         await fs.unlink(picture.path);
       }
     } else if (collectionType === 'cart') {
-      newData = new CartModel();
+      newData = new CartModel(data);
     } else {
       const err = new AppErrors('Collection type must be product or cart as values', 502);
       throw err;

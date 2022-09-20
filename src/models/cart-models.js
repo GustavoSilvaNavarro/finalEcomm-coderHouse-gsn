@@ -3,15 +3,14 @@ import { Schema, model } from 'mongoose';
 
 const CartSchema = new Schema(
   {
-    idBuyer: { type: Schema.Types.ObjectId, ref: 'Users', required: true },
-    date: { type: Date, required: true, default: Date.now },
+    idBuyer: { type: Schema.Types.ObjectId, ref: 'Users', required: true, unique: true },
     productsList: [
       {
         product: { type: Schema.Types.ObjectId, ref: 'Products' },
-        amountOrdered: { type: Number, min: 0 },
+        amountOrdered: { type: Number, min: 1 },
+        _id: false,
       },
     ],
-    address: { type: String, required: true, trim: true, minLength: 1 },
   },
   {
     timestamps: true,
