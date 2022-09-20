@@ -1,5 +1,7 @@
 'use strict';
 import logger from '../config/logs/loggers.js';
+import sendEmail from '../utils/mails/nodemailer.js';
+import env from '../utils/env/env-variables.js';
 
 //! GET - Registration page
 export const renderSignupPage = (req, res, next) => {
@@ -13,9 +15,18 @@ export const renderSignupPage = (req, res, next) => {
 };
 
 //! POST - Register new user
-export const createNewUser = (req, res, next) => {
+export const createNewUser = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Register process, creating new user`);
   try {
+    const mailOptions = {
+      from: 'NodeJs Server',
+      to: env.smtp.user,
+      subject: 'New User was registered',
+      html: `<h1>New User: ${req.user.firstName} ${req.user.lastName} with ${req.user.email} was registered</h1>`,
+    };
+
+    await sendEmail(mailOptions);
+
     res.status(302).redirect('/');
   } catch (err) {
     logger.error(err.message || err.toString());
