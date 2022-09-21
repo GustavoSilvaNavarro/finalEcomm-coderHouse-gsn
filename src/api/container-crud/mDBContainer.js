@@ -61,7 +61,7 @@ class CrudContainerMongo {
     } else if (collectionType === 'cart') {
       if (id !== undefined) {
         if (isValidObjectId(id)) {
-          anyDataRead = await CartModel.findById(id);
+          anyDataRead = await CartModel.findOne({ idBuyer: id });
         } else {
           const err = new AppErrors('Please enter a valid ID for Cart', 502);
           throw err;

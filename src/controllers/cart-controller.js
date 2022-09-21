@@ -8,7 +8,16 @@ export const renderCartList = async (req, res, next) => {
   try {
     //TODO - check the cart exist
     const response = await CartMDB.getCartInfo(req.user._id);
-    res.status(200).render('cart/new-cart', { response });
+
+    const totalPrice = response.reduce((acc, current) => {
+      return acc + current.product.productPrice * current.amountOrdered;
+    }, 0);
+
+    const totalAmount = response.reduce((acc, current) => {
+      return acc + current.amountOrdered;
+    }, 0);
+
+    res.status(200).render('cart/new-cart', { response, totalPrice, totalAmount });
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);
@@ -28,10 +37,11 @@ export const addProductsToCart = async (req, res, next) => {
 };
 
 //! DELETE - Find specific cart by user ID and delete single product by ID
-export const deleteSingleProduct = (req, res, next) => {
+export const deleteSingleProduct = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Deleting one product from Cart List`);
   try {
-    res.status(200).send('Deleting.....');
+    await CartMDB.deleteOneProductFromCart(req.user._id, req.params.idProduct); //TODO send message
+    res.status(200).redirect('/api/carts');
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);

@@ -132,6 +132,44 @@ class CartMongo extends CrudContainerMongo {
       return [];
     }
   }
+
+  //! DELETE SINGLE PRODUCT BY ID FROM CART LIST
+  async deleteOneProductFromCart(idBuyer, idProduct) {
+    if (env.cartType !== undefined && env.productType !== undefined) {
+      const productToDelete = await this.readAllData(env.productType, idProduct);
+      const selectedCart = await this.readAllData(env.cartType, idBuyer);
+
+      if (productToDelete !== null && selectedCart !== null) {
+        // TODO - Verify that the product is in that list
+        const productExists = await CartModel.where('_id')
+          .equals(selectedCart.id)
+          .where('productsList.product')
+          .equals(idProduct)
+          .count();
+
+        if (productExists > 0) {
+          await CartModel.findByIdAndUpdate(
+            selectedCart.id,
+            { $pull: { productsList: { product: idProduct } } },
+            { new: true }
+          );
+          return `Product with ID: ${idProduct}, was deleted from the cart with ID: ${selectedCart.id}`;
+        } else {
+          const err = new AppErrors(
+            `Product with ID: ${idProduct} can not be deleted because is not in the Cart with ID: ${selectedCart.id}`,
+            502
+          );
+          throw err;
+        }
+      } else {
+        const err = new AppErrors('Product or Cart was not Found!', 502);
+        throw err;
+      }
+    }
+
+    const err = new AppErrors('Collection type must be a string', 502);
+    throw err;
+  }
 }
 
 export default new CartMongo();

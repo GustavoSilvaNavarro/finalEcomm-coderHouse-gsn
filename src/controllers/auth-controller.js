@@ -55,3 +55,20 @@ export const loginUserProcess = (req, res, next) => {
     next(err);
   }
 };
+
+//!GET - Logout and render the page of logout
+export const renderLogoutPage = (req, res, next) => {
+  logger.info(`${req.method} request to '${req.url}' route: Logging out a user`);
+  try {
+    req.logout(err => {
+      if (err) {
+        throw err;
+      }
+
+      res.status(200).redirect('/login');
+    });
+  } catch (err) {
+    logger.error(err.message || err.toString());
+    next(err);
+  }
+};

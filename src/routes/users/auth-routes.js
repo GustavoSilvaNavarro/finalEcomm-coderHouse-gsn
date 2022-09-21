@@ -7,7 +7,9 @@ import {
   loginUserProcess,
   renderSignupPage,
   renderLoginPage,
+  renderLogoutPage,
 } from '../../controllers/auth-controller.js';
+import { userIsAuthenticate } from '../../middleware/authentication/authentication.js';
 import { upload } from '../../utils/upload-images/multer.js';
 import { validateResources } from '../../middleware/validations/validate-resources.js';
 import { authUserSchema, loginUserSchema } from '../../helpers/schemas/user-schemas.js';
@@ -40,5 +42,8 @@ router.post(
   }),
   loginUserProcess
 );
+
+//!GET - Logout and render the page of logout
+router.get('/logout', userIsAuthenticate, renderLogoutPage);
 
 export default router;

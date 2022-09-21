@@ -16,15 +16,16 @@
                   <p class="text-muted">{{ product.productDescription }}</p>
                   <p><span class="fw-bold">Price: </span>{{ product.productPrice }} USD</p>
                   <div class="d-flex align-items-center justify-content-around">
-                    <form>
+                    {{!-- <form>
                       <div class="d-flex justify-content-center">
                         <input type="number" class="form-control form-control-sm text-center" name="updateAmountOrdered" value={{ amountOrdered }} placeholder="Add amount" min="1" required />
                       </div>
                       <div class="d-grid mt-3">
                         <button class="btn btn-primary">Update amount</button>
                       </div>
-                    </form>
-                    <form>
+                    </form> --}}
+                    <form action="/api/carts/{{product._id}}?_method=DELETE" method="post">
+                      <input type="hidden" name="_method" value="DELETE">
                       <button class="btn btn-danger btn-lg">Delete</button>
                     </form>
                   </div>
@@ -39,15 +40,17 @@
       </div>
     </div>
 
+  {{#if totalAmount}}
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
           <h5 class="display-6 text-center">Total</h5>
-          <p><span class="fw-bold">Amount ordered: </span>1 Units</p>
+          <p><span class="fw-bold">Amount ordered: </span>{{ totalAmount }} Units</p>
           <hr class="m-0">
-          <p class="text-end"><span class="fw-bold">Price: </span>1000 USD</p>
+          <p class="text-end"><span class="fw-bold">Price: </span>{{ totalPrice }} USD</p>
         </div>
       </div>
     </div>
+    {{/if}}
   </div>
 </section>
