@@ -9,6 +9,8 @@ import logger from '../config/logs/loggers.js';
 export const renderCartList = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Rendering cart page`);
   try {
+    const { firstName, lastName } = req.user;
+
     //TODO - check the cart exist
     const response = await CartMDB.getCartInfo(req.user._id);
 
@@ -21,11 +23,11 @@ export const renderCartList = async (req, res, next) => {
         return acc + current.amountOrdered;
       }, 0);
 
-      res.status(200).render('cart/new-cart', { response, totalPrice, totalAmount });
+      res.status(200).render('cart/new-cart', { response, totalPrice, totalAmount, firstName, lastName });
       return;
     }
 
-    res.status(200).render('cart/new-cart');
+    res.status(200).render('cart/new-cart', { firstName, lastName });
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);

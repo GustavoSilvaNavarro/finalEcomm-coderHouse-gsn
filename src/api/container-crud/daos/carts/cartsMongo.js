@@ -10,7 +10,7 @@ import OrderModel from '../../../../models/order-model.js';
 class CartMongo extends CrudContainerMongo {
   //! Check if cart exist
   async cartExist(id) {
-    return await CartModel.findOne({ idBuyer: id });
+    return await CartModel.findOne({ user: id });
   }
 
   //! Save products inside cart
@@ -78,7 +78,7 @@ class CartMongo extends CrudContainerMongo {
   //! INSERT NEW EMPTY CART OF PRODUCTS
   async addNewCart(idUser) {
     if (env.cartType !== undefined) {
-      return await this.createNewData(env.cartType, { idBuyer: idUser });
+      return await this.createNewData(env.cartType, { user: idUser });
     }
 
     const err = new AppErrors('Collection type must be a string', 502);
@@ -111,7 +111,7 @@ class CartMongo extends CrudContainerMongo {
   //! LIST ALL PRODUCTS INSIDE CART
   async listAllProductsFromCart(idBuyer) {
     const cartHasProducts = await CartModel.aggregate([
-      { $match: { idBuyer: new Types.ObjectId(idBuyer) } },
+      { $match: { user: new Types.ObjectId(idBuyer) } },
       { $project: { count: { $size: '$productsList' } } },
     ]);
 
@@ -195,7 +195,7 @@ class CartMongo extends CrudContainerMongo {
 
       //! Create Order
       const newOrder = new OrderModel({
-        idBuyer,
+        buyer: idBuyer,
         productsList: result,
         totalPrice: getTotalPrice,
         totalAmount: getTotalProducts,

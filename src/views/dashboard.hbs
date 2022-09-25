@@ -2,12 +2,12 @@
   <div class="col-md-3">
     <section>
       <div class="d-flex justify-content-center">
-        <img class="profile_picture" src="https://res.cloudinary.com/dukuzakaw/image/upload/v1663430160/ecom-coderHouse/users/oi62qdp04efq8e7fttyt.jpg" alt="Gustavo Silva">
+        <img class="profile_picture" src={{ image }} alt={{ firstName }}>
       </div>
       <div>
-        <h3 class="display-6 text-center">Gustavo Silva Navarro</h3>
-        <p><span class="fw-bold">Email:</span> gusilva@itba.edu.ar</p>
-        <p><span class="fw-bold">Address:</span> Vicente Lopez 320, Martinez</p>
+        <h3 class="display-6 text-center">{{ firstName }} {{ lastName }}</h3>
+        <p><span class="fw-bold">Email:</span> {{ email }}</p>
+        <p><span class="fw-bold">Address:</span> {{ address }}</p>
       </div>
     </section>
   </div>

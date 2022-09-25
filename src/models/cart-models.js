@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 
 const CartSchema = new Schema(
   {
-    idBuyer: { type: Schema.Types.ObjectId, ref: 'Users', required: true, unique: true },
+    user: { type: Schema.Types.ObjectId, ref: 'Users' },
     productsList: [
       {
         product: { type: Schema.Types.ObjectId, ref: 'Products' },

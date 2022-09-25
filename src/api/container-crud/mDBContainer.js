@@ -160,7 +160,7 @@ class CrudContainerMongo {
           throw err;
         } else if (collectionType === 'cart') {
           // const cartDeleted = await CartModel.findByIdAndDelete(id);
-          const cartDeleted = await CartModel.deleteOne({ idBuyer: id });
+          const cartDeleted = await CartModel.deleteOne({ user: id });
 
           if (cartDeleted !== null) {
             return `Cart with ID: ${id} was deleted`;
