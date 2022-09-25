@@ -1,6 +1,7 @@
 'use strict';
 import CartMDB from '../api/container-crud/daos/carts/cartsMongo.js';
 import sendEmail from '../utils/mails/nodemailer.js';
+import { sendTextMessages } from '../utils/messages/twilio.js';
 import env from '../utils/env/env-variables.js';
 import logger from '../config/logs/loggers.js';
 
@@ -82,7 +83,26 @@ export const setNewOrder = async (req, res, next) => {
       html,
     };
 
+    //! Sending email
     await sendEmail(mailOptions);
+
+    //! Sending Whatsapp
+    const newWhatsaap = `
+      New User: ${req.user.firstName} ${req.user.lastName} with Email: ${req.user.email} set new Order
+      List of Products
+      ${listOfProducts.join(', ')}
+
+      Total Price: ${resp.getTotalPrice} USD
+      Amount of Products: ${resp.getTotalProducts} Units
+
+      Thanks for your purchase!
+    `;
+
+    await sendTextMessages(env.whatsappTwilio, newWhatsaap, `whatsapp:${req.user.cellphone}`);
+
+    //! Send Text Message
+    const body = 'Order received!!\n\nIn few minutes we will be preparing your order.\n\nThanks for your purchase.';
+    await sendTextMessages(env.adminPhoneNumber, body, req.user.cellphone);
 
     res.status(200).redirect('/');
   } catch (err) {

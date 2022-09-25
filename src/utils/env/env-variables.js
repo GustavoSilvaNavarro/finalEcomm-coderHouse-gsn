@@ -18,4 +18,5 @@ export default {
   smsPublicSid: process.env.TWILIO_ACCOUNT_SID,
   smsSecretKey: process.env.TWILIO_AUTH_TOKEN,
   adminPhoneNumber: process.env.TWILIO_ADMIN_PHONE_NUMBER,
+  whatsappTwilio: process.env.TWILIO_ADMIN_WHATSAPP_CHAT,
 };

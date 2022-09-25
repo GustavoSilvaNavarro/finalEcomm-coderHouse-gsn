@@ -1,14 +1,14 @@
-import { logger } from 'handlebars';
 import twilio from 'twilio';
 
 import env from '../env/env-variables.js';
+import logger from '../../config/logs/loggers.js';
 
 const client = twilio(env.smsPublicSid, env.smsSecretKey);
 
-export async function sendTextMessages(body, phone) {
+export async function sendTextMessages(from, body, phone) {
   try {
     const message = await client.messages.create({
-      from: env.adminPhoneNumber,
+      from,
       to: phone,
       body,
     });
