@@ -1,5 +1,7 @@
 'use strict';
 import CartMDB from '../api/container-crud/daos/carts/cartsMongo.js';
+import sendEmail from '../utils/mails/nodemailer.js';
+import env from '../utils/env/env-variables.js';
 import logger from '../config/logs/loggers.js';
 
 //!GET - See my cart list
@@ -9,15 +11,20 @@ export const renderCartList = async (req, res, next) => {
     //TODO - check the cart exist
     const response = await CartMDB.getCartInfo(req.user._id);
 
-    const totalPrice = response.reduce((acc, current) => {
-      return acc + current.product.productPrice * current.amountOrdered;
-    }, 0);
+    if (Array.isArray(response)) {
+      const totalPrice = response.reduce((acc, current) => {
+        return acc + current.product.productPrice * current.amountOrdered;
+      }, 0);
 
-    const totalAmount = response.reduce((acc, current) => {
-      return acc + current.amountOrdered;
-    }, 0);
+      const totalAmount = response.reduce((acc, current) => {
+        return acc + current.amountOrdered;
+      }, 0);
 
-    res.status(200).render('cart/new-cart', { response, totalPrice, totalAmount });
+      res.status(200).render('cart/new-cart', { response, totalPrice, totalAmount });
+      return;
+    }
+
+    res.status(200).render('cart/new-cart');
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);
@@ -42,6 +49,42 @@ export const deleteSingleProduct = async (req, res, next) => {
   try {
     await CartMDB.deleteOneProductFromCart(req.user._id, req.params.idProduct); //TODO send message
     res.status(200).redirect('/api/carts');
+  } catch (err) {
+    logger.error(err.message || err.toString());
+    next(err);
+  }
+};
+
+//! POST - Set new order and delete temporary cart to save the order
+export const setNewOrder = async (req, res, next) => {
+  logger.info(`${req.method} request to '${req.originalUrl}' route: Deleting one product from Cart List`);
+  try {
+    const resp = await CartMDB.setOrderByTheBuyer(req.user._id);
+
+    const listOfProducts = resp.result.map(el => {
+      return el.product.productName;
+    });
+
+    const html = `
+    <h1>New User: ${req.user.firstName} ${req.user.lastName} with Email: ${req.user.email} set new Order</h1>
+    <h3>List of Products</h3>
+      <p>${listOfProducts.join(', ')}</p>
+      <p><span style="font-weight: bold;">Total Price: </span> ${resp.getTotalPrice} USD</p>
+      <p><span style="font-weight: bold;">Amount of Products: </span> ${resp.getTotalProducts} Units</p>
+
+      <p>Thanks for your purchase</p>
+    `;
+
+    const mailOptions = {
+      from: 'NodeJs Server',
+      to: env.smtp.user,
+      subject: 'New Order was setup',
+      html,
+    };
+
+    await sendEmail(mailOptions);
+
+    res.status(200).redirect('/');
   } catch (err) {
     logger.error(err.message || err.toString());
     next(err);

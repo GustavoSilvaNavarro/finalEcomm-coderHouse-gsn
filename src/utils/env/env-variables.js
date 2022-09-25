@@ -15,4 +15,7 @@ export default {
   cloudName: process.env.CLOUDINARY_CLOUD_NAME,
   cloudPublicKey: process.env.CLOUDINARY_PUBLIC_KEY,
   cloudSecretKey: process.env.CLOUDINARY_SECRET_KEY,
+  smsPublicSid: process.env.TWILIO_ACCOUNT_SID,
+  smsSecretKey: process.env.TWILIO_AUTH_TOKEN,
+  adminPhoneNumber: process.env.TWILIO_ADMIN_PHONE_NUMBER,
 };

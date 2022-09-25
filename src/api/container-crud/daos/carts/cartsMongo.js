@@ -5,6 +5,7 @@ import CrudContainerMongo from '../../mDBContainer.js';
 import env from '../../../../utils/env/env-variables.js';
 import { AppErrors } from '../../../../utils/errors/error-app.js';
 import CartModel from '../../../../models/cart-models.js';
+import OrderModel from '../../../../models/order-model.js';
 
 class CartMongo extends CrudContainerMongo {
   //! Check if cart exist
@@ -168,6 +169,46 @@ class CartMongo extends CrudContainerMongo {
     }
 
     const err = new AppErrors('Collection type must be a string', 502);
+    throw err;
+  }
+
+  //! DELETE AN EXISTING SINGLE CART
+  async deleteCart(id) {
+    if (env.cartType !== undefined) {
+      return await this.deleteData(id, env.cartType);
+    }
+
+    const err = new AppErrors('Collection type must be a string', 502);
+    throw err;
+  }
+
+  async setOrderByTheBuyer(idBuyer) {
+    const result = await this.getCartInfo(idBuyer);
+    if (result.length > 0) {
+      const getTotalPrice = result.reduce((acc, current) => {
+        return acc + current.product.productPrice * current.amountOrdered;
+      }, 0);
+
+      const getTotalProducts = result.reduce((acc, current) => {
+        return acc + current.amountOrdered;
+      }, 0);
+
+      //! Create Order
+      const newOrder = new OrderModel({
+        idBuyer,
+        productsList: result,
+        totalPrice: getTotalPrice,
+        totalAmount: getTotalProducts,
+      });
+
+      newOrder.save();
+
+      await this.deleteCart(idBuyer);
+
+      return { result, getTotalPrice, getTotalProducts };
+    }
+
+    const err = new AppErrors('Cart is empty, can not set an order', 502);
     throw err;
   }
 }

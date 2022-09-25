@@ -159,7 +159,8 @@ class CrudContainerMongo {
           const err = new AppErrors('Product not Found!', 502);
           throw err;
         } else if (collectionType === 'cart') {
-          const cartDeleted = await CartModel.findByIdAndDelete(id);
+          // const cartDeleted = await CartModel.findByIdAndDelete(id);
+          const cartDeleted = await CartModel.deleteOne({ idBuyer: id });
 
           if (cartDeleted !== null) {
             return `Cart with ID: ${id} was deleted`;
