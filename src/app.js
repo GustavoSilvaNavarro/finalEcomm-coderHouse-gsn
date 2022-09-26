@@ -8,7 +8,7 @@ import connectionToServer from './server/server.js';
 import { connectDB } from './db/dbMDB.js';
 
 const cpus = os.cpus();
-const mode = 'fork';
+const mode = 'cluster';
 
 const { app } = connectionToServer;
 connectDB();

@@ -1,0 +1,170 @@
+Statistical profiling result from products_fork_v8.log, (27462 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+  26919   98.0%          C:\Windows\SYSTEM32\ntdll.dll
+    503    1.8%          C:\Program Files\nodejs\node.exe
+      1    0.0%          C:\Windows\System32\KERNEL32.DLL
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      8    0.0%   20.5%  LazyCompile: *resolve node:path:158:10
+      3    0.0%    7.7%  Function: ^processTimers node:internal/timers:492:25
+      2    0.0%    5.1%  Function: ^hrtime node:internal/process/per_thread:79:16
+      1    0.0%    2.6%  RegExp: ^(?:\{\{(~)?>)
+      1    0.0%    2.6%  LazyCompile: *writeOrBuffer node:internal/streams/writable:368:23
+      1    0.0%    2.6%  LazyCompile: *wrap E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\code-gen.js:101:22
+      1    0.0%    2.6%  LazyCompile: *parse E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:269:30
+      1    0.0%    2.6%  LazyCompile: *normalizeString node:path:66:25
+      1    0.0%    2.6%  LazyCompile: *normalize node:path:304:12
+      1    0.0%    2.6%  LazyCompile: *nextTick node:internal/process/task_queues:103:18
+      1    0.0%    2.6%  LazyCompile: *compile E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:73:28
+      1    0.0%    2.6%  LazyCompile: *basename node:path:749:11
+      1    0.0%    2.6%  LazyCompile: *anonymous E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:12:42
+      1    0.0%    2.6%  LazyCompile: *afterWrite node:internal/streams/writable:490:20
+      1    0.0%    2.6%  LazyCompile: *WhitespaceControl.Program E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\whitespace-control.js:19:48
+      1    0.0%    2.6%  LazyCompile: *Long.isLong E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\bson\lib\long.js:236:28
+      1    0.0%    2.6%  LazyCompile: *<anonymous> node:internal/fs/utils:683:42
+      1    0.0%    2.6%  LazyCompile: *<anonymous> E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-handlebars\dist\express-handlebars.js:30:40
+      1    0.0%    2.6%  Function: ^setWriteHeadHeaders E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\on-headers\index.js:105:30
+      1    0.0%    2.6%  Function: ^realpathSync node:fs:2474:22
+      1    0.0%    2.6%  Function: ^parse E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\forwarded\index.js:59:16
+      1    0.0%    2.6%  Function: ^moveHelperToHooks E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\helpers.js:48:27
+      1    0.0%    2.6%  Function: ^forwarded E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\forwarded\index.js:24:20
+      1    0.0%    2.6%  Function: ^expressInit E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\middleware\init.js:29:30
+      1    0.0%    2.6%  Function: ^cookieParser E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\cookie-parser\index.js:44:32
+      1    0.0%    2.6%  Function: ^clearBuffer node:internal/streams/writable:532:21
+      1    0.0%    2.6%  Function: ^Writable.uncork node:internal/streams/writable:344:37
+      1    0.0%    2.6%  Function: ^Long.negate E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\bson\lib\long.js:613:38
+      1    0.0%    2.6%  Function: ^Glob._processReaddir E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-handlebars\node_modules\glob\glob.js:368:43
+
+ [C++]:
+   ticks  total  nonlib   name
+
+ [Summary]:
+   ticks  total  nonlib   name
+     39    0.1%  100.0%  JavaScript
+      0    0.0%    0.0%  C++
+     38    0.1%   97.4%  GC
+  27423   99.9%          Shared libraries
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+  26919   98.0%  C:\Windows\SYSTEM32\ntdll.dll
+
+    503    1.8%  C:\Program Files\nodejs\node.exe
+    304   60.4%    C:\Program Files\nodejs\node.exe
+     70   23.0%      Function: ^compileFunction node:vm:309:25
+     70  100.0%        Function: ^wrapSafe node:internal/modules/cjs/loader:1024:18
+     70  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1066:37
+     69   98.6%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1121:37
+      1    1.4%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1121:37
+     11    3.6%      Function: ^statSync node:fs:1588:18
+     11  100.0%        Function: ^tryStat E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\view.js:174:17
+     11  100.0%          Function: ^resolve E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\view.js:146:42
+     11  100.0%            Function: ^lookup E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\view.js:104:40
+     11    3.6%      Function: ^handleWriteReq node:internal/stream_base_commons:45:24
+     11  100.0%        Function: ^writeGeneric node:internal/stream_base_commons:147:22
+     11  100.0%          Function: ^Socket._writeGeneric node:net:837:42
+     11  100.0%            Function: ^Socket._write node:net:874:35
+     11    3.6%      C:\Program Files\nodejs\node.exe
+      2   18.2%        LazyCompile: *quotedString E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\code-gen.js:118:38
+      1   50.0%          LazyCompile: *compile E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:73:28
+      1  100.0%            LazyCompile: *<anonymous> E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-handlebars\dist\express-handlebars.js:227:47
+      1   50.0%          Function: ^pushSource E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:881:34
+      1  100.0%            Function: ^append E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:394:26
+      1    9.1%        LazyCompile: ~getESMFacade node:internal/bootstrap/loaders:281:15
+      1  100.0%          LazyCompile: ~compileForPublicLoader node:internal/bootstrap/loaders:263:25
+      1  100.0%            LazyCompile: ~loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1    9.1%        LazyCompile: ~<anonymous> E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\nodemailer\lib\well-known\index.js:6:31
+      1  100.0%          C:\Program Files\nodejs\node.exe
+      1  100.0%            Function: ~<anonymous> E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\nodemailer\lib\well-known\index.js:1:1
+      1    9.1%        LazyCompile: *parse E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:269:30
+      1  100.0%          Function: ^parseWithoutProcessing E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\base.js:33:32
+      1  100.0%            Function: ^parse E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\base.js:51:15
+      1    9.1%        Function: ^unput E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:429:34
+      1  100.0%          LazyCompile: *anonymous E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:549:49
+      1  100.0%            LazyCompile: *next E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:478:32
+      1    9.1%        Function: ^readPackage node:internal/modules/cjs/loader:296:21
+      1  100.0%          Function: ^readPackageScope node:internal/modules/cjs/loader:327:26
+      1  100.0%            Function: ^trySelf node:internal/modules/cjs/loader:447:17
+      1    9.1%        Function: ^makeAbs E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-handlebars\node_modules\glob\common.js:203:18
+      1  100.0%          Function: ^Glob._makeAbs E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-handlebars\node_modules\glob\glob.js:255:36
+      1  100.0%            Function: ^Glob._process E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-handlebars\node_modules\glob\glob.js:295:36
+      1    9.1%        Function: ^expressInit E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\middleware\init.js:29:30
+      1  100.0%          LazyCompile: *trim_prefix E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\router\index.js:293:23
+      1  100.0%            LazyCompile: *next E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\router\index.js:177:16
+      1    9.1%        Function: ^configureOrigin E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\cors\lib\index.js:36:27
+      1  100.0%          Function: ^cors E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\cors\lib\index.js:159:16
+      1  100.0%            Function: ^<anonymous> E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\cors\lib\index.js:219:57
+      1    9.1%        Function: ^compileFunction node:vm:309:25
+      1  100.0%          Function: ^wrapSafe node:internal/modules/cjs/loader:1024:18
+      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1066:37
+      9    3.0%      Function: ^stat node:internal/modules/cjs/loader:151:14
+      5   55.6%        Function: ^Module._findPath node:internal/modules/cjs/loader:500:28
+      5  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:860:35
+      5  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:766:24
+      4   44.4%        Function: ^tryFile node:internal/modules/cjs/loader:390:17
+      4  100.0%          Function: ^tryExtensions node:internal/modules/cjs/loader:406:23
+      4  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:500:28
+      8    2.6%      Function: ^realpathSync node:fs:2474:22
+      8  100.0%        Function: ^toRealPath node:internal/modules/cjs/loader:399:20
+      8  100.0%          Function: ^tryFile node:internal/modules/cjs/loader:390:17
+      5   62.5%            Function: ^tryExtensions node:internal/modules/cjs/loader:406:23
+      3   37.5%            Function: ^tryPackage node:internal/modules/cjs/loader:344:20
+      7    2.3%      Function: ^randomFillSync node:internal/crypto/random:113:24
+      7  100.0%        Function: ^randomBytes node:internal/crypto/random:93:21
+      7  100.0%          Function: ^randomBytesSync E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\random-bytes\index.js:72:25
+      7  100.0%            Function: ^uidSync E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\uid-safe\index.js:75:18
+      5    1.6%      LazyCompile: *quotedString E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\code-gen.js:118:38
+      4   80.0%        LazyCompile: *compile E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:73:28
+      3   75.0%          Function: ^compileInput E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\compiler.js:507:24
+      3  100.0%            Function: ^ret E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\compiler.js:515:15
+      1   25.0%          LazyCompile: *<anonymous> E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-handlebars\dist\express-handlebars.js:227:47
+      1  100.0%            LazyCompile: *step E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-handlebars\dist\express-handlebars.js:31:18
+      1   20.0%        Function: ^pushSource E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:881:34
+      1  100.0%          Function: ^append E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:394:26
+      1  100.0%            LazyCompile: *compile E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:73:28
+      5    1.6%      LazyCompile: *nextTick node:internal/process/task_queues:103:18
+      3   60.0%        Function: ^emitReadable node:internal/streams/readable:575:22
+      3  100.0%          Function: ^onEofChunk node:internal/streams/readable:545:20
+      3  100.0%            Function: ^readableAddChunk node:internal/streams/readable:242:26
+      1   20.0%        Function: ^onwrite node:internal/streams/writable:428:17
+      1  100.0%          Function: ^afterWriteDispatched node:internal/stream_base_commons:155:30
+      1  100.0%            Function: ^writeGeneric node:internal/stream_base_commons:147:22
+      1   20.0%        Function: ^_destroy node:_http_incoming:221:55
+      1  100.0%          Function: ^_destroy node:internal/streams/destroy:77:18
+      1  100.0%            Function: ^destroy node:internal/streams/destroy:39:17
+      5    1.6%      Function: ^openSync node:fs:590:18
+      5  100.0%        Function: ^readFileSync node:fs:464:22
+      4   80.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1121:37
+      4  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:976:33
+      1   20.0%          LazyCompile: ~Module._extensions..json node:internal/modules/cjs/loader:1171:39
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:976:33
+      4    1.3%      LazyCompile: ~configSecureContext node:internal/tls/secure-context:124:29
+      4  100.0%        LazyCompile: ~createSecureContext node:_tls_common:99:29
+      4  100.0%          LazyCompile: ~connect node:_tls_wrap:1600:35
+      4  100.0%            LazyCompile: ~makeConnection E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\mongodb\lib\cmap\connect.js:256:24
+      4    1.3%      Function: ^logger E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\morgan\index.js:103:26
+      4  100.0%        LazyCompile: *trim_prefix E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\router\index.js:293:23
+      4  100.0%          LazyCompile: *next E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\router\index.js:177:16
+      4  100.0%            Function: ^methodOverride E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\method-override\index.js:57:34
+      4    1.3%      Function: ^cookieParser E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\cookie-parser\index.js:44:32
+      4  100.0%        LazyCompile: *trim_prefix E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\router\index.js:293:23
+      4  100.0%          LazyCompile: *next E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express\lib\router\index.js:177:16
+      4  100.0%            Function: ^logger E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\morgan\index.js:103:26
+      4    1.3%      Function: ^Hash node:internal/crypto/hash:58:14
+      4  100.0%        Function: ^createHash node:crypto:132:20
+      3   75.0%          Function: ^hash E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-session\index.js:596:14
+      3  100.0%            Function: ^generate E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\express-session\index.js:363:22
+      1   25.0%          Function: ^entitytag E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\etag\index.js:39:20
+      1  100.0%            Function: ^etag E:\Users\Gustavo Silva\Desktop\CoderHouse\Backend\final-project-ecom-back-gsn\backend\node_modules\etag\index.js:70:15
+      6    1.2%    Function: ^processTimers node:internal/timers:492:25
+
