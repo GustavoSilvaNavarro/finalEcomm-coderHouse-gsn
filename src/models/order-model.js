@@ -3,10 +3,11 @@ import { Schema, model } from 'mongoose';
 
 const OrderSchema = new Schema(
   {
-    buyer: { type: Schema.Types.ObjectId, ref: 'Users' },
+    // buyer: { type: Schema.Types.ObjectId, ref: 'User' },
+    buyer: { type: String, required: true },
     productsList: [
       {
-        product: { type: Schema.Types.ObjectId, ref: 'Products' },
+        product: { type: Schema.Types.ObjectId, ref: 'Product' },
         amountOrdered: { type: Number, min: 1 },
         _id: false,
       },
@@ -19,4 +20,4 @@ const OrderSchema = new Schema(
   }
 );
 
-export default model('Orders', OrderSchema);
+export default model('Order', OrderSchema);

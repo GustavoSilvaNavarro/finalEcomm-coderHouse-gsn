@@ -12,7 +12,7 @@ export const renderCartList = async (req, res, next) => {
     const { firstName, lastName } = req.user;
 
     //TODO - check the cart exist
-    const response = await CartMDB.getCartInfo(req.user._id);
+    const response = await CartMDB.getCartInfo(String(req.user.id));
 
     if (Array.isArray(response)) {
       const totalPrice = response.reduce((acc, current) => {
@@ -38,7 +38,7 @@ export const renderCartList = async (req, res, next) => {
 export const addProductsToCart = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Adding a product to the cart`);
   try {
-    await CartMDB.addSingleProductToCart(req.user._id, req.params.idProduct, req.body); //TODO send message
+    await CartMDB.addSingleProductToCart(String(req.user.id), req.params.idProduct, req.body); //TODO send message
     res.status(200).redirect('/api/carts');
   } catch (err) {
     logger.error(err.message || err.toString());
@@ -50,7 +50,7 @@ export const addProductsToCart = async (req, res, next) => {
 export const deleteSingleProduct = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Deleting one product from Cart List`);
   try {
-    await CartMDB.deleteOneProductFromCart(req.user._id, req.params.idProduct); //TODO send message
+    await CartMDB.deleteOneProductFromCart(String(req.user.id), req.params.idProduct); //TODO send message
     res.status(200).redirect('/api/carts');
   } catch (err) {
     logger.error(err.message || err.toString());
@@ -62,7 +62,7 @@ export const deleteSingleProduct = async (req, res, next) => {
 export const setNewOrder = async (req, res, next) => {
   logger.info(`${req.method} request to '${req.originalUrl}' route: Deleting one product from Cart List`);
   try {
-    const resp = await CartMDB.setOrderByTheBuyer(req.user._id);
+    const resp = await CartMDB.setOrderByTheBuyer(String(req.user.id));
 
     const listOfProducts = resp.result.map(el => {
       return el.product.productName;

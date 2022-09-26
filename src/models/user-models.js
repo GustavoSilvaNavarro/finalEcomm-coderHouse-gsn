@@ -39,4 +39,4 @@ UserSchema.methods.comparePassword = async function (password) {
   }
 };
 
-export default model('Users', UserSchema);
+export default model('User', UserSchema);

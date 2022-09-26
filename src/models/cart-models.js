@@ -3,10 +3,10 @@ import { Schema, model } from 'mongoose';
 
 const CartSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'Users' },
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     productsList: [
       {
-        product: { type: Schema.Types.ObjectId, ref: 'Products' },
+        product: { type: Schema.Types.ObjectId, ref: 'Product' },
         amountOrdered: { type: Number, min: 1 },
         _id: false,
       },
@@ -17,4 +17,4 @@ const CartSchema = new Schema(
   }
 );
 
-export default model('Carts', CartSchema);
+export default model('Cart', CartSchema);

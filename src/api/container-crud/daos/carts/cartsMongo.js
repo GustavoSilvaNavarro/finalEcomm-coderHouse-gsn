@@ -193,6 +193,8 @@ class CartMongo extends CrudContainerMongo {
         return acc + current.amountOrdered;
       }, 0);
 
+      await this.deleteCart(idBuyer);
+
       //! Create Order
       const newOrder = new OrderModel({
         buyer: idBuyer,
@@ -202,8 +204,6 @@ class CartMongo extends CrudContainerMongo {
       });
 
       newOrder.save();
-
-      await this.deleteCart(idBuyer);
 
       return { result, getTotalPrice, getTotalProducts };
     }
