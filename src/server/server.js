@@ -9,7 +9,7 @@ import MongoStore from 'connect-mongo';
 import { engine } from 'express-handlebars';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import morgan from 'morgan';
+// import morgan from 'morgan';
 
 import mainRoutes from '../routes/main-routes.js';
 import authUserRoutes from '../routes/users/auth-routes.js';
@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(
   session({
