@@ -10,10 +10,11 @@ export const notFoundPage = (req, _res, next) => {
 
 // eslint-disable-next-line no-unused-vars
 export const errorHandler = (err, _req, res, next) => {
-  res.status(err.status || 500).json({
-    error: {
-      status: err.status,
-      message: err.message,
-    },
-  });
+  // res.status(err.status || 500).json({
+  //   error: {
+  //     status: err.status,
+  //     message: err.message,
+  //   },
+  // });
+  res.status(err.status || 500).render('error-page/errors', { error: err.message });
 };
